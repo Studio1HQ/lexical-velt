@@ -1,14 +1,15 @@
 "use client";
 
-import { $getRoot, $getSelection } from 'lexical';
-import { useEffect } from 'react';
+import { $createParagraphNode, $createTextNode, $getRoot } from 'lexical';
+import { $createHeadingNode, $createQuoteNode } from '@lexical/rich-text';
+
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
+
+import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { HeadingNode, QuoteNode } from '@lexical/rich-text';
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table';
 import { ListItemNode, ListNode } from '@lexical/list';
@@ -21,6 +22,9 @@ import { TRANSFORMERS } from '@lexical/markdown';
 
 import ToolbarPlugin from './plugins/toolbar-plugin';
 import BubbleMenuPlugin from './plugins/bubble-menu-plugin';
+import VeltCommentsPlugin from './plugins/velt-comments-plugin';
+import { CommentNode } from '@veltdev/lexical-velt-comments';
+
 
 const theme = {
   ltr: 'ltr',
@@ -98,9 +102,31 @@ function Placeholder() {
   );
 }
 
+function initialEditorState() {
+  const root = $getRoot();
+  if (root.getFirstChild() === null) {
+    const heading = $createHeadingNode('h1');
+    heading.append($createTextNode('The Future of Collaborative Writing'));
+    root.append(heading);
+
+    const p1 = $createParagraphNode();
+    p1.append($createTextNode('Welcome to WriteFlow, where creativity meets collaboration. This advanced rich text editor is built on Lexical and powered by Velt, allowing you to seamlessly collaborate with your team in real-time.'));
+    root.append(p1);
+
+    const quote = $createQuoteNode();
+    quote.append($createTextNode('Collaboration is the essence of great stories. When we write together, we bring diverse perspectives that enrich every word.'));
+    root.append(quote);
+
+    const p2 = $createParagraphNode();
+    p2.append($createTextNode('Try selecting any part of this text to see the floating bubble menu. You can add comments, format text, and see other users cursors moving in real-time. User presence is visible in the top navigation bar, keeping everyone connected.'));
+    root.append(p2);
+  }
+}
+
 const editorConfig = {
   namespace: 'WriteFlow',
   theme,
+  editorState: initialEditorState,
   onError(error: any) {
     throw error;
   },
@@ -116,6 +142,7 @@ const editorConfig = {
     TableRowNode,
     AutoLinkNode,
     LinkNode,
+    CommentNode,
   ],
 };
 
@@ -134,6 +161,7 @@ export function LexicalEditor() {
               ErrorBoundary={LexicalErrorBoundary}
             />
             <BubbleMenuPlugin />
+            <VeltCommentsPlugin />
             <HistoryPlugin />
             <ListPlugin />
             <LinkPlugin />

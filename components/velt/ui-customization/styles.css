@@ -1,0 +1,16 @@
+/* [Velt] UI customization styles */
+
+velt-comment-dialog::part(triangle) {
+  border-color: rgb(255, 205, 46) !important;
+}
+
+velt-comment-dialog::part(triangle-fill) {
+  fill: rgb(255, 205, 46) !important;
+}
+
+/* Dark Mode Theme */
+--velt-dark-mode-accent: #141414;
+--velt-dark-mode-accent-text: #ffffff;
+--velt-dark-mode-background-0: #000000;
+--velt-dark-mode-background-2: #141414;
+--velt-dark-mode-text-0: #ffffff;

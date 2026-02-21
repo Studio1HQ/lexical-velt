@@ -56,6 +56,8 @@
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
     "@velt-js/mcp-installer": "^0.1.0",
+    "@veltdev/lexical-velt-comments": "^5.0.0-beta.2",
+    "@veltdev/react": "^4.7.13",
     "autoprefixer": "10.4.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -82,5 +84,8 @@
     "typescript": "5.2.2",
     "vaul": "^0.9.9",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@veltdev/types": "^4.7.13"
   }
 }

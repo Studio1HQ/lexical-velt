@@ -5,7 +5,8 @@ import { $getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND, SELECTION_CHANGE
 import { mergeRegister } from '@lexical/utils';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Bold, Italic, Link } from 'lucide-react';
+import { Bold, Italic, Link, MessageSquare } from 'lucide-react';
+import { addComment } from '@veltdev/lexical-velt-comments';
 
 const LowPriority = 1;
 
@@ -27,12 +28,12 @@ export default function BubbleMenuPlugin() {
       if (nativeSelection !== null && rootElement !== null && rootElement.contains(nativeSelection.anchorNode)) {
         const range = nativeSelection.getRangeAt(0);
         const rect = range.getBoundingClientRect();
-        
+
         setPosition({
           top: rect.top - 50,
           left: rect.left + rect.width / 2 - 80, // Center the bubble menu
         });
-        
+
         setIsBold(selection.hasFormat('bold'));
         setIsItalic(selection.hasFormat('italic'));
         setIsVisible(true);
@@ -105,6 +106,17 @@ export default function BubbleMenuPlugin() {
         className="h-8 w-8 p-0"
       >
         <Link className="h-4 w-4" />
+      </Button>
+
+      <div className="w-px h-4 bg-border mx-1" />
+
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => addComment({ editor })}
+        className="h-8 w-8 p-0"
+      >
+        <MessageSquare className="h-4 w-4" />
       </Button>
     </div>
   );
