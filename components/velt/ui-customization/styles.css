@@ -9,8 +9,10 @@ velt-comment-dialog::part(triangle-fill) {
 }
 
 /* Dark Mode Theme */
---velt-dark-mode-accent: #141414;
---velt-dark-mode-accent-text: #ffffff;
---velt-dark-mode-background-0: #000000;
---velt-dark-mode-background-2: #141414;
---velt-dark-mode-text-0: #ffffff;
+:root {
+  --velt-dark-mode-accent: #141414;
+  --velt-dark-mode-accent-text: #ffffff;
+  --velt-dark-mode-background-0: #000000;
+  --velt-dark-mode-background-2: #141414;
+  --velt-dark-mode-text-0: #ffffff;
+}
