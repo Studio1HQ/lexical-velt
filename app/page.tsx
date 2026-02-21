@@ -1,7 +1,6 @@
 "use client";
 
 import { Navbar } from '@/components/navbar';
-import { LexicalEditor } from '@/components/editor/lexical-editor';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,14 +8,18 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Calendar, Clock, Eye, Heart, MessageCircle, Share2, Save } from 'lucide-react';
 import { VeltProvider } from '@veltdev/react';
 import { useAppUser } from "@/app/userAuth/useAppUser";
-import { VeltCollaboration } from '@/components/velt/VeltCollaboration';
 import { useVeltAuthProvider } from '@/components/velt/VeltInitializeUser';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
+const LexicalEditor = dynamic(() => import('@/components/editor/lexical-editor').then(mod => mod.LexicalEditor), { ssr: false });
+const VeltCollaboration = dynamic(() => import('@/components/velt/VeltCollaboration').then(mod => mod.VeltCollaboration), { ssr: false });
+
 
 const VELT_API_KEY = process.env.NEXT_PUBLIC_VELT_API_KEY!;
 
-export default function Home() {
+function HomeContent() {
   const { authProvider } = useVeltAuthProvider();
-
   const { user } = useAppUser();
 
   return (
@@ -183,5 +186,13 @@ export default function Home() {
         </main>
       </div>
     </VeltProvider>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
