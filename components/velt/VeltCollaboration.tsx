@@ -1,7 +1,9 @@
 import { VeltComments, VeltCommentsSidebar, VeltPresence, VeltCursor } from "@veltdev/react";
 import VeltInitializeDocument from "./VeltInitializeDocument";
+import { useTheme } from "next-themes";
 
 export function VeltCollaboration() {
+  const { theme } = useTheme();
   return (
     <>
       <VeltInitializeDocument />
@@ -12,6 +14,7 @@ export function VeltCollaboration() {
         textMode={false}
         commentPinHighlighter={false}
         dialogOnHover={false}
+        darkMode={theme === "dark"}
       />
       <VeltCommentsSidebar groupConfig={{ enable: false }} />
     </>

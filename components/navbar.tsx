@@ -25,7 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { VeltNotificationsTool, VeltPresence, VeltSidebarButton } from "@veltdev/react";
+import { VeltCommentTool, VeltNotificationsTool, VeltPresence, VeltSidebarButton } from "@veltdev/react";
 import { useTheme } from "next-themes";
 
 export function Navbar() {
@@ -86,6 +86,7 @@ export function Navbar() {
             {/* hide in the mobile view */}
             <div className="hidden lg:flex items-center gap-2">
               <VeltPresence />
+              <VeltCommentTool darkMode={theme === "dark"} />
               <VeltNotificationsTool darkMode={theme === "dark"} />
             </div>
             <VeltSidebarButton darkMode={theme === "dark"} />
