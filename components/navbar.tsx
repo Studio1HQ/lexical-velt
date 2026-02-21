@@ -111,7 +111,7 @@ export function Navbar() {
                 {predefinedUser.map((currentUser, index) => (
                   <DropdownMenuItem
                     key={currentUser.userId}
-                    onClick={() => handleUserSwitch(String(index))}
+                    onClick={() => handleUserSwitch(currentUser.userId)}
                     className="flex items-center space-x-3 p-3 cursor-pointer hover:!bg-gray-100 dark:hover:!bg-gray-700"
                   >
                     <Avatar className="w-8 h-8">

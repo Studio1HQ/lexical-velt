@@ -26,10 +26,11 @@ export function useAppUser() {
     const userParam = searchParams.get('user');
 
     useEffect(() => {
-        if (userParam === '1') {
-            setUser(predefinedUser[0]);
-        } else if (userParam === '2') {
-            setUser(predefinedUser[1]);
+        if (userParam) {
+            const newUser = predefinedUser.find(v => v.userId === userParam);
+            if (newUser) {
+                setUser(newUser);
+            }
         }
     }, [userParam, setUser]);
 
