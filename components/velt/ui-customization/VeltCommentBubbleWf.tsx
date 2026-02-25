@@ -5,7 +5,7 @@ const VeltCommentBubbleWf = () => {
   return (
     <VeltCommentBubbleWireframe>
       <div style={{ position: 'relative', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-        <VeltIf condition="{commentAnnotation.comments.length} > 0">
+        <VeltIf condition="{commentAnnotation.comments.length} > 0" >
           <div style={{
             background: 'rgba(255, 255, 255, 0.08)',
             borderRadius: '18.667px',

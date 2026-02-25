@@ -16,7 +16,7 @@ export function VeltCollaboration() {
         dialogOnHover={false}
         darkMode={theme === "dark"}
       />
-      <VeltCommentsSidebar groupConfig={{ enable: false }} />
+      <VeltCommentsSidebar groupConfig={{ enable: false }} darkMode={theme === "dark"} />
     </>
   );
 }

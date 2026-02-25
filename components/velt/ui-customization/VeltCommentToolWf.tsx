@@ -3,7 +3,7 @@ import { VeltCommentToolWireframe } from '@veltdev/react';
 
 const VeltCommentToolWf = () => {
   return (
-    <VeltCommentToolWireframe>
+    <VeltCommentToolWireframe >
       <div style={{
         background: '#141414',
         border: 'none',
