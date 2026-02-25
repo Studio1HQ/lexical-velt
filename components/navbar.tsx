@@ -85,7 +85,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             {/* hide in the mobile view */}
             <div className="hidden lg:flex items-center gap-2">
-              <VeltPresence/>
+              <VeltPresence />
               <VeltNotificationsTool darkMode={theme === "dark"} />
             </div>
             <VeltSidebarButton darkMode={theme === "dark"} />

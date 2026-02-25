@@ -32,7 +32,7 @@ A premium, collaborative rich text writing platform built with Lexical, Velt, Ne
 This project leverages cutting-edge Velt technologies for a "no-conflict" experience:
 
 - **CRDT (Conflict-free Replicated Data Types)**: Built-in Velt synchronization ensures that multiple users can edit the same paragraph simultaneously. Changes are merged mathematically at the data layer, preventing overrides and ensuring eventual consistency without a complex backend.
-- **Velt Agent Skills (MCP)**: This project was scaffolded and is maintained using **Velt Agent Skills**. This Model Context Protocol (MCP) integration allows AI coding assistants to understand Velt's best practices, handle JWT authentication wiring, and manage complex editor plugins automatically.
+- **Velt Agent Skills (MCP)**:This Model Context Protocol (MCP) integration allows AI coding assistants to understand Velt's best practices, handle JWT authentication wiring, and manage complex editor plugins automatically.
 
 ### UI / UX
 
@@ -74,9 +74,14 @@ npm install
 3. Set up environment variables in `.env.local`:
 
 ```bash
+# Required for frontend initialization (VeltProvider)
 NEXT_PUBLIC_VELT_API_KEY=your_public_key_here
+
+# Required for backend JWT token generation (API routes)
 VELT_AUTH_TOKEN=your_auth_token_here
 ```
+
+> **Note:** Obtain these keys from the [Velt Console](https://console.velt.dev). The `API_KEY` is public-facing, while the `AUTH_TOKEN` is a secret that should only be used on the server.
 
 4. Start the development server:
 
